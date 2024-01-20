@@ -1,0 +1,66 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                        EA Wanyen |
+//|                             https://www.forexroboteasy.com      |
+//|                                                  Forex Robot Easy |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//|                                         Terms of Reference for EA |
+//|                                                                 |
+//| 1. Develop code for EA Wanyen, a Forex software that operates     |
+//|    based on the ‘Trend Follow’ strategy.                          |
+//|                                                                 |
+//| 2. Implement functionality to track and leverage the market’s     |
+//|    trend using the Wanyen indicator.                              |
+//|                                                                 |
+//| 3. Incorporate the Martingale technique to open additional       |
+//|    orders with increased lot size when a trade plunges into the   |
+//|    negative.                                                      |
+//|                                                                 |
+//| 4. Include automatic control of capital feature to calculate      |
+//|    stop loss and lot size based on the user's deposit.            |
+//|                                                                 |
+//| 5. Provide an option to halt trading on Fridays to give users     |
+//|    increased control over their trading activities.               |
+//|                                                                 |
+//| 6. Ensure optimal performance with a minimum balance of $10 on a  |
+//|    cent account or an equivalent standard account for 0.01 lot.   |
+//|                                                                 |
+//| 7. Focus on trading on XAUUSD, EURUSD, GBPUSD, AUDUSD, or USDJPY  |
+//|    for the most effective results.                                |
+//|                                                                 |
+//| 8. Provide only necessary trading functions in the technical      |
+//|    specification.                                                 |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                          Place your code here                     |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+// Sample code for reference
+void OnTick()
+{
+    // Get current market price
+    double currentPrice = MarketInfo(Symbol(), MODE_BID);
+
+    // Calculate Wanyen indicator
+    double wanyenIndicator = iCustom(Symbol(), 0, 'Wanyen', 0, 0);
+
+    // Check if market is trending up
+    if (wanyenIndicator > 0)
+    {
+        // Place a buy order
+        OrderSend(Symbol(), OP_BUY, 0.01, currentPrice, 0, 0, 0, 'EA Wanyen', 0, 0, Green);
+    }
+    // Check if market is trending down
+    else if (wanyenIndicator < 0)
+    {
+        // Place a sell order
+        OrderSend(Symbol(), OP_SELL, 0.01, currentPrice, 0, 0, 0, 'EA Wanyen', 0, 0, Red);
+    }
+}
+
+//+------------------------------------------------------------------+
